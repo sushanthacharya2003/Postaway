@@ -20,6 +20,7 @@ export const addPost = (req, res) => {
     imageUrl: null, // image comes later (multer step)
     userId: req.user.id,
   });
+  const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
   return res.status(201).json(post);
 };
@@ -62,7 +63,6 @@ export const editPost = (req, res) => {
 };
 };
 
-const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
 // DELETE POST
 export const removePost = (req, res) => {
